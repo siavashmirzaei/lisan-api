@@ -1,0 +1,6 @@
+@Lisan.Api_HostAddress = http://localhost:5014
+
+GET {{Lisan.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
