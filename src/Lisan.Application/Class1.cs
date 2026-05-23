@@ -1,4 +1,4 @@
-﻿namespace Lisan.Application;
+namespace Lisan.Application;
 
 public class Class1
 {

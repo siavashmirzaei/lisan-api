@@ -11,7 +11,10 @@
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="FluentAssertions" Version="6.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.*" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="NSubstitute" Version="5.*" />
     <PackageReference Include="xunit" Version="2.5.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
   </ItemGroup>
@@ -23,6 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Lisan.Application\Lisan.Application.csproj" />
     <ProjectReference Include="..\..\src\Lisan.Domain\Lisan.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Lisan.Infrastructure\Lisan.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
