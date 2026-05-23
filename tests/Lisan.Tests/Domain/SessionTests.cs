@@ -105,4 +105,29 @@ public class SessionTests
 
         session.PersianWordsProducedCount.Should().Be(0);
     }
+
+    [Fact]
+    public void RecordActivity_WhenCompleted_DoesNothing()
+    {
+        var session = Session.Start(ChildProfileId, PersonaId, storyId: null);
+        var endTime = session.StartedAt.AddMinutes(5);
+        session.Complete(endTime);
+        var activityAfterEnd = endTime.AddMinutes(1);
+
+        session.RecordActivity(activityAfterEnd);
+
+        session.LastActivityAt.Should().NotBe(activityAfterEnd);
+        session.Status.Should().Be(SessionStatus.Completed);
+    }
+
+    [Fact]
+    public void AddPersianWords_WhenAbandoned_DoesNothing()
+    {
+        var session = Session.Start(ChildProfileId, PersonaId, storyId: null);
+        session.Abandon(session.StartedAt.AddMinutes(11));
+
+        session.AddPersianWords(5);
+
+        session.PersianWordsProducedCount.Should().Be(0);
+    }
 }

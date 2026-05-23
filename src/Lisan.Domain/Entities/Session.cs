@@ -75,7 +75,9 @@ public class Session
 
     public void AddPersianWords(int count)
     {
-        if (count > 0)
-            PersianWordsProducedCount += count;
+        if (Status != SessionStatus.Active || count <= 0)
+            return;
+
+        PersianWordsProducedCount += count;
     }
 }
