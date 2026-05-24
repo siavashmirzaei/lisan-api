@@ -5,6 +5,7 @@ namespace Lisan.Infrastructure.Persistence;
 
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
+    public DbSet<ChildProfile> ChildProfiles => Set<ChildProfile>();
     public DbSet<Session> Sessions => Set<Session>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

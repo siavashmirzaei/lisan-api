@@ -1,5 +1,4 @@
 using Lisan.Domain.Entities;
-using Lisan.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -48,6 +47,12 @@ public class SessionConfiguration : IEntityTypeConfiguration<Session>
         builder.Property(s => s.LastActivityAt)
             .IsRequired()
             .HasColumnName("last_activity_at");
+
+        builder.HasOne<ChildProfile>()
+            .WithMany()
+            .HasForeignKey(s => s.ChildProfileId)
+            .HasConstraintName("FK_sessions_child_profiles_child_profile_id")
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasIndex(s => s.ChildProfileId).HasDatabaseName("ix_sessions_child_profile_id");
         builder.HasIndex(s => s.Status).HasDatabaseName("ix_sessions_status");
