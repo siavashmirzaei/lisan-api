@@ -7,6 +7,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 {
     public DbSet<ChildProfile> ChildProfiles => Set<ChildProfile>();
     public DbSet<Session> Sessions => Set<Session>();
+    public DbSet<Transcript> Transcripts => Set<Transcript>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
