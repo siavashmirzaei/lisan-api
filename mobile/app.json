@@ -1,0 +1,24 @@
+{
+  "expo": {
+    "name": "Lisan",
+    "slug": "lisan",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "lisan",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.lisan.app"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-status-bar",
+      "@sentry/react-native",
+      "expo-web-browser"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
