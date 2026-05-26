@@ -5,17 +5,17 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B42B416C-E1AB-4B6F-A6EC-4EB9E88FDE5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lisan.Api", "src\Lisan.Api\Lisan.Api.csproj", "{C1394E25-3751-48CD-A3BB-EAEE9F5AF2A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lisan.Api", "backend\src\Lisan.Api\Lisan.Api.csproj", "{C1394E25-3751-48CD-A3BB-EAEE9F5AF2A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lisan.Application", "src\Lisan.Application\Lisan.Application.csproj", "{81D16685-6F06-4B02-A7D0-D7144E878C78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lisan.Application", "backend\src\Lisan.Application\Lisan.Application.csproj", "{81D16685-6F06-4B02-A7D0-D7144E878C78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lisan.Domain", "src\Lisan.Domain\Lisan.Domain.csproj", "{93AD833A-2DF4-4925-AC13-13C9F8AF8D97}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lisan.Domain", "backend\src\Lisan.Domain\Lisan.Domain.csproj", "{93AD833A-2DF4-4925-AC13-13C9F8AF8D97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lisan.Infrastructure", "src\Lisan.Infrastructure\Lisan.Infrastructure.csproj", "{561AAAD5-8828-43B9-80AF-5A72EFD904C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lisan.Infrastructure", "backend\src\Lisan.Infrastructure\Lisan.Infrastructure.csproj", "{561AAAD5-8828-43B9-80AF-5A72EFD904C5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{73FCA42A-31D2-4A37-BE4C-6D454234C972}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lisan.Tests", "tests\Lisan.Tests\Lisan.Tests.csproj", "{4B777B62-3319-4607-B911-CBAE41E612BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lisan.Tests", "backend\tests\Lisan.Tests\Lisan.Tests.csproj", "{4B777B62-3319-4607-B911-CBAE41E612BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
