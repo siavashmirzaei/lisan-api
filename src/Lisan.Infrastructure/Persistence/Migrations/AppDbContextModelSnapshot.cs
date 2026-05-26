@@ -90,6 +90,42 @@ namespace Lisan.Infrastructure.Persistence.Migrations
                     b.ToTable("sessions", (string)null);
                 });
 
+            modelBuilder.Entity("Lisan.Domain.Entities.Transcript", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<Guid>("SessionId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("session_id");
+
+                    b.Property<string>("Speaker")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("speaker");
+
+                    b.Property<string>("TextFa")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("text_fa");
+
+                    b.Property<int>("Turn")
+                        .HasColumnType("integer")
+                        .HasColumnName("turn");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SessionId")
+                        .HasDatabaseName("ix_transcripts_session_id");
+
+                    b.ToTable("transcripts", (string)null);
+                });
+
             modelBuilder.Entity("Lisan.Domain.Entities.Session", b =>
                 {
                     b.HasOne("Lisan.Domain.Entities.ChildProfile", null)
@@ -98,6 +134,16 @@ namespace Lisan.Infrastructure.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_sessions_child_profiles_child_profile_id");
+                });
+
+            modelBuilder.Entity("Lisan.Domain.Entities.Transcript", b =>
+                {
+                    b.HasOne("Lisan.Domain.Entities.Session", null)
+                        .WithMany()
+                        .HasForeignKey("SessionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_transcripts_sessions_session_id");
                 });
 #pragma warning restore 612, 618
         }

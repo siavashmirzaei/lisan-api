@@ -22,6 +22,12 @@ public class Transcript
 
     public static Transcript Record(Guid sessionId, int turn, TranscriptSpeaker speaker, string textFa)
     {
+        if (sessionId == Guid.Empty)
+            throw new ArgumentException("SessionId must not be empty.", nameof(sessionId));
+
+        if (turn <= 0)
+            throw new ArgumentOutOfRangeException(nameof(turn), "Turn must be a positive integer.");
+
         if (string.IsNullOrWhiteSpace(textFa))
             throw new ArgumentException("Transcript text must not be empty.", nameof(textFa));
 

@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Lisan.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260524205944_AddTranscriptsTable")]
+    [Migration("20260526221603_AddTranscriptsTable")]
     partial class AddTranscriptsTable
     {
         /// <inheritdoc />
@@ -24,6 +24,16 @@ namespace Lisan.Infrastructure.Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("Lisan.Domain.Entities.ChildProfile", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("child_profiles", (string)null);
+                });
 
             modelBuilder.Entity("Lisan.Domain.Entities.Session", b =>
                 {
@@ -86,7 +96,8 @@ namespace Lisan.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Lisan.Domain.Entities.Transcript", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("timestamp with time zone")
@@ -116,6 +127,16 @@ namespace Lisan.Infrastructure.Persistence.Migrations
                         .HasDatabaseName("ix_transcripts_session_id");
 
                     b.ToTable("transcripts", (string)null);
+                });
+
+            modelBuilder.Entity("Lisan.Domain.Entities.Session", b =>
+                {
+                    b.HasOne("Lisan.Domain.Entities.ChildProfile", null)
+                        .WithMany()
+                        .HasForeignKey("ChildProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_sessions_child_profiles_child_profile_id");
                 });
 
             modelBuilder.Entity("Lisan.Domain.Entities.Transcript", b =>

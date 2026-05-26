@@ -15,7 +15,7 @@ namespace Lisan.Infrastructure.Persistence.Migrations
                 name: "transcripts",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
                     session_id = table.Column<Guid>(type: "uuid", nullable: false),
                     turn = table.Column<int>(type: "integer", nullable: false),
                     speaker = table.Column<string>(type: "text", nullable: false),
@@ -24,7 +24,7 @@ namespace Lisan.Infrastructure.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_transcripts", x => x.Id);
+                    table.PrimaryKey("PK_transcripts", x => x.id);
                     table.ForeignKey(
                         name: "FK_transcripts_sessions_session_id",
                         column: x => x.session_id,

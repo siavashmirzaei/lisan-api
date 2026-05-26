@@ -11,7 +11,7 @@ public class TranscriptConfiguration : IEntityTypeConfiguration<Transcript>
         builder.ToTable("transcripts");
 
         builder.HasKey(t => t.Id);
-        builder.Property(t => t.Id).ValueGeneratedNever();
+        builder.Property(t => t.Id).ValueGeneratedNever().HasColumnName("id");
 
         builder.Property(t => t.SessionId)
             .IsRequired()

@@ -50,6 +50,30 @@ public class TranscriptTests
     }
 
     [Fact]
+    public void Record_WithZeroTurn_ThrowsArgumentOutOfRangeException()
+    {
+        var act = () => Transcript.Record(SessionId, turn: 0, TranscriptSpeaker.Child, "سلام");
+
+        act.Should().Throw<ArgumentOutOfRangeException>().WithParameterName("turn");
+    }
+
+    [Fact]
+    public void Record_WithNegativeTurn_ThrowsArgumentOutOfRangeException()
+    {
+        var act = () => Transcript.Record(SessionId, turn: -1, TranscriptSpeaker.Child, "سلام");
+
+        act.Should().Throw<ArgumentOutOfRangeException>().WithParameterName("turn");
+    }
+
+    [Fact]
+    public void Record_WithEmptySessionId_ThrowsArgumentException()
+    {
+        var act = () => Transcript.Record(Guid.Empty, turn: 1, TranscriptSpeaker.Child, "سلام");
+
+        act.Should().Throw<ArgumentException>().WithParameterName("sessionId");
+    }
+
+    [Fact]
     public void Record_EachCallProducesUniqueId()
     {
         var t1 = Transcript.Record(SessionId, turn: 1, TranscriptSpeaker.Child, "سلام");

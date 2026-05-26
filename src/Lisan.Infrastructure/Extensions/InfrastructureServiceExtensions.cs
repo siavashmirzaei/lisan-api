@@ -1,4 +1,6 @@
+using Lisan.Application.Repositories;
 using Lisan.Infrastructure.Persistence;
+using Lisan.Infrastructure.Repositories;
 using Lisan.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -16,6 +18,7 @@ public static class InfrastructureServiceExtensions
             options.UseNpgsql(configuration.GetConnectionString("Default")));
 
         services.AddHostedService<AbandonedSessionCleanupService>();
+        services.AddScoped<ITranscriptRepository, TranscriptRepository>();
 
         return services;
     }
