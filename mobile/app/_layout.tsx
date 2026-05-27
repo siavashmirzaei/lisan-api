@@ -1,5 +1,12 @@
+import { Sentry } from '../lib/sentry';
 import { Stack } from 'expo-router';
 
-export default function RootLayout() {
-  return <Stack screenOptions={{ headerShown: false }} />;
+function RootLayout() {
+  return (
+    <Sentry.ErrorBoundary>
+      <Stack screenOptions={{ headerShown: false }} />
+    </Sentry.ErrorBoundary>
+  );
 }
+
+export default Sentry.wrap(RootLayout);
