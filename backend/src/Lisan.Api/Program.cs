@@ -1,4 +1,5 @@
 using Lisan.Infrastructure.Extensions;
+using Lisan.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,5 +17,20 @@ var app = builder.Build();
 
 app.UseSentryTracing();
 app.UseHttpsRedirection();
+
+app.MapGet("/health", async (AppDbContext db, CancellationToken ct) =>
+{
+    try
+    {
+        var connected = await db.Database.CanConnectAsync(ct);
+        return connected
+            ? Results.Ok(new { db_connected = true })
+            : Results.Json(new { db_connected = false }, statusCode: 503);
+    }
+    catch
+    {
+        return Results.Json(new { db_connected = false }, statusCode: 503);
+    }
+});
 
 app.Run();
