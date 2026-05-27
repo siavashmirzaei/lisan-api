@@ -16,7 +16,6 @@ builder.Services.AddInfrastructure(builder.Configuration);
 var app = builder.Build();
 
 app.UseSentryTracing();
-app.UseHttpsRedirection();
 
 app.MapGet("/health", async (AppDbContext db, CancellationToken ct) =>
 {
