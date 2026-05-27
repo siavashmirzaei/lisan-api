@@ -14,8 +14,11 @@ public static class InfrastructureServiceExtensions
         this IServiceCollection services,
         IConfiguration configuration)
     {
+        var databaseUrl = configuration["DATABASE_URL"]
+            ?? throw new InvalidOperationException("DATABASE_URL environment variable is not set.");
+
         services.AddDbContext<AppDbContext>(options =>
-            options.UseNpgsql(configuration.GetConnectionString("Default")));
+            options.UseNpgsql(databaseUrl));
 
         services.AddHostedService<AbandonedSessionCleanupService>();
         services.AddScoped<ITranscriptRepository, TranscriptRepository>();
