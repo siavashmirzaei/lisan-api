@@ -19,10 +19,11 @@ public class ChildProfileCascadeDeleteTests : IDisposable
     [Fact]
     public async Task DeletingChildProfile_CascadesAndRemovesAllAssociatedSessions()
     {
-        var childProfile = ChildProfile.Create();
+        var parentId = Guid.NewGuid();
+        var childProfile = ChildProfile.Create(parentId, "Ali", 5);
         var session1 = Session.Start(childProfile.Id, Guid.NewGuid(), storyId: null);
         var session2 = Session.Start(childProfile.Id, Guid.NewGuid(), storyId: null);
-        var otherProfile = ChildProfile.Create();
+        var otherProfile = ChildProfile.Create(parentId, "Sara", 7);
         var otherSession = Session.Start(otherProfile.Id, Guid.NewGuid(), storyId: null);
 
         await using (var ctx = CreateContext())
@@ -49,8 +50,9 @@ public class ChildProfileCascadeDeleteTests : IDisposable
     [Fact]
     public async Task DeletingChildProfile_DoesNotAffectSessionsOfOtherProfiles()
     {
-        var profileA = ChildProfile.Create();
-        var profileB = ChildProfile.Create();
+        var parentId = Guid.NewGuid();
+        var profileA = ChildProfile.Create(parentId, "Ali", 5);
+        var profileB = ChildProfile.Create(parentId, "Sara", 7);
         var sessionA = Session.Start(profileA.Id, Guid.NewGuid(), storyId: null);
         var sessionB = Session.Start(profileB.Id, Guid.NewGuid(), storyId: null);
 
