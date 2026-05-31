@@ -22,6 +22,7 @@ public static class InfrastructureServiceExtensions
         });
 
         services.AddHostedService<AbandonedSessionCleanupService>();
+        services.AddHostedService<TranscriptRetentionService>();
         services.AddScoped<ITranscriptRepository, TranscriptRepository>();
 
         return services;
