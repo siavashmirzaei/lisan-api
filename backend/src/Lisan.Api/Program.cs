@@ -5,6 +5,13 @@ using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Fail fast if any required environment variable is absent.
+string[] requiredVars = ["DATABASE_URL", "CLERK_AUTHORITY", "OPENAI_API_KEY", "GOOGLE_TTS_API_KEY", "PRIVACY_POLICY_VERSION"];
+var missingVars = requiredVars.Where(v => string.IsNullOrWhiteSpace(builder.Configuration[v])).ToArray();
+if (missingVars.Length > 0)
+    throw new InvalidOperationException(
+        $"Application cannot start. Missing required environment variables: {string.Join(", ", missingVars)}");
+
 var sentryDsn = builder.Configuration["SENTRY_DSN_BACKEND"];
 if (!string.IsNullOrEmpty(sentryDsn))
 {
@@ -22,8 +29,7 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddAuthentication(ClerkAuthenticationDefaults.AuthenticationScheme)
     .AddClerkAuthentication(x =>
     {
-        x.Authority = builder.Configuration["CLERK_AUTHORITY"]
-            ?? throw new InvalidOperationException("CLERK_AUTHORITY is not configured.");
+        x.Authority = builder.Configuration["CLERK_AUTHORITY"]!;
     });
 
 builder.Services.AddAuthorizationBuilder()
