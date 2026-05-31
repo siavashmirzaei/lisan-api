@@ -17,6 +17,9 @@ public class LisanApiFactory : WebApplicationFactory<Program>
             "postgresql://postgres:test@localhost:5432/testdb");
         Environment.SetEnvironmentVariable("CLERK_AUTHORITY",
             "https://test.clerk.accounts.dev");
+        Environment.SetEnvironmentVariable("OPENAI_API_KEY", "sk-test-placeholder");
+        Environment.SetEnvironmentVariable("GOOGLE_TTS_API_KEY", "test-tts-key");
+        Environment.SetEnvironmentVariable("PRIVACY_POLICY_VERSION", "v1.0");
         // Empty string disables Sentry (null causes ArgumentNullException).
         Environment.SetEnvironmentVariable("SENTRY_DSN_BACKEND", "");
     }
@@ -53,6 +56,9 @@ public class LisanApiFactory : WebApplicationFactory<Program>
         {
             Environment.SetEnvironmentVariable("DATABASE_URL", null);
             Environment.SetEnvironmentVariable("CLERK_AUTHORITY", null);
+            Environment.SetEnvironmentVariable("OPENAI_API_KEY", null);
+            Environment.SetEnvironmentVariable("GOOGLE_TTS_API_KEY", null);
+            Environment.SetEnvironmentVariable("PRIVACY_POLICY_VERSION", null);
             Environment.SetEnvironmentVariable("SENTRY_DSN_BACKEND", null);
         }
     }
